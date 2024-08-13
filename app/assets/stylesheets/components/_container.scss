@@ -1,8 +1,12 @@
-.container {
+.container-wrapper {
   border-radius: 8px; /* Adjust the radius as needed */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
   padding: 20px; /* Optional: Add some padding inside the container */
   background-color: white; /* Optional: Set a background color for contrast */
   margin-bottom: 20px;
   margin-top: 30px;
+}
+
+.cards-border {
+  border-radius: black;
 }

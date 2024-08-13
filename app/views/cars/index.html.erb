@@ -11,7 +11,7 @@
   <div class="row">
     <% @cars.each do |car| %>
       <div class="card-car p-0 m-3 col-12 col-md-6 col-lg-4">
-        <img src=<%= car.imageURL %>>
+         <% <img src=<%= car.imageURL %>
         <div class="card-car-infos mt-3">
           <div class="d-flex justify-content-between">
             <h2><strong><%= car.brand %>: <%= car.model %></strong></h2>
