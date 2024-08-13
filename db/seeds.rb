@@ -11,6 +11,9 @@ user_amount = 10
 
 puts "Creating #{user_amount} users and cars..."
 
+# brands = ["Tesla", "Porsche", "Lamborghini", "Ferrari", "Bugatti", "McLaren"]
+
+
 
 user_amount.times do
   user = User.create(
@@ -21,14 +24,22 @@ user_amount.times do
     address: Faker::Address.city
   )
 
+  # brand_sample = brands.sample
+  # model = Faker::Vehicle.model(make_of_model: brand_sample)
+  make = Faker::Vehicle.make
+  model = Faker::Vehicle.model(make_of_model: make)
+
   Car.create(
-  brand: Faker::Vehicle.make,
-  model: Faker::Vehicle.model,
+  brand: make,
+  model: model,
   year: Faker::Vehicle.year,
   rate: Faker::Commerce.price(range: 50..500),
+  imageURL: "https://loremflickr.com/320/240/#{model}",
   user: user,
   description: Faker::Vehicle.car_options )
 end
+
+
 
 # User.create!(
 #   content: Faker::Restaurant.review,

@@ -4,22 +4,25 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Bookinge.new()
+    @car = Car.find(params[:car_id])
+    @booking = Booking.new(booking_params)
+    @booking.car = @car
     if @booking.save
-      redirect_to booking_path(@booking)
+      redirect_to bookings_path(@booking)
     else
       # show the form again but with the @restaurant in this method
-      render 'new', status: :unprocessable_entity
+      render 'cars/show', status: :unprocessable_entity
     end
   end
 
-  def update
 
+  def update
+    # code the part
   end
 
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date)
+    params.require(:booking).permit(:start_date, :end_date, :status)
   end
 end
