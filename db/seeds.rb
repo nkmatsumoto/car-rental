@@ -1,4 +1,5 @@
 require "faker"
+require "open-uri"
 
 puts "Cleaning the DB..."
 Booking.destroy_all
@@ -7,17 +8,14 @@ User.destroy_all
 
 # CATEGORIES = %W[burger ramen sushi desserts healthy kebabs pizza tacos sandwiches dumplings soup curry rice pasta steakhouse vegan bakery juice salads seafood brunch wings cafe bbq deli pies buffet pub brasserie shakes creamery grill]
 
-# car_amount = 50
-user_amount = 10
+user_count = 15
 
-puts "Creating #{user_amount} users and cars..."
+puts "Creating #{user_count} users and cars..."
 
 # brands = ["Tesla", "Porsche", "Lamborghini", "Ferrari", "Bugatti", "McLaren"]
 
-
-
-user_amount.times do
-  user = User.create(
+user_count.times do
+  User.create(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     email: Faker::Internet.unique.email,
@@ -31,16 +29,17 @@ User.all.each do |user|
   # model = Faker::Vehicle.model(make_of_model: brand_sample)
   make = Faker::Vehicle.make
   model = Faker::Vehicle.model(make_of_model: make)
+  p file = URI.open("https://loremflickr.com/320/240/#{model}")
 
-  car = Car.create(
+  car = Car.create!(
   brand: make,
   model: model,
   year: Faker::Vehicle.year,
   rate: Faker::Commerce.price(range: 50..500),
-  imageURL: "https://loremflickr.com/320/240/#{model}",
   user: user,
   description: Faker::Vehicle.car_options )
-
+  car.photo.attach(io: file, filename: "#{model}.jpg", content_type: "image/png")
+  car.save
 end
 
 User.all.each do |user|
@@ -62,4 +61,4 @@ end
 #   restaurant: restaurant)
 
 
-puts "... created #{user_amount} users and cars"
+puts "... created #{user_count} users and cars"
