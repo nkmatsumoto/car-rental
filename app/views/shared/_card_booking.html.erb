@@ -1,0 +1,16 @@
+  <div class="row">
+    <% @bookings.each do |booking| %>
+      <div class="card-booking m-2">
+        <%= cl_image_tag booking.car.photo.key, height: 300, width: 400, crop: :fill %>
+        <div class="card-product-infos">
+          <div class="px-2">
+            <h3><strong><%= booking.car.brand %>: <%= booking.car.model %></strong></h3>
+            <h5>Booked from: <%= booking.start_date %> to <%= booking.end_date %></h5>
+            <h5>Owned by: <%= booking.car.user.first_name %> <%= booking.car.user.last_name %></h5>
+            <h5><strong>¥<%= booking.car.rate %>/day</strong></h5>
+            <p>Product description with <strong>relevant info</strong> only.</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
