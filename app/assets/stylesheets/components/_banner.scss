@@ -1,0 +1,39 @@
+.banner {
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+  height: 100%;
+}
+
+.banner h1 {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.banner p {
+  font-size: 20px;
+  color: white;
+  opacity: .7;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+// .banner {
+//   position: fixed; /* Fixed positioning */
+//   top: 0;          /* Aligns the banner to the top */
+//   left: 0;         /* Aligns the banner to the left */
+//   width: 100vw;    /* Sets the width to 100% of the viewport width */
+//   height: 100vh;   /* Sets the height to 100% of the viewport height */
+//   background-size: cover; /* Ensures the background image covers the entire area */
+//   background-position: center; /* Centers the background image */
+//   z-index: -1;    /* Sends the banner behind other content */
+// }
+
+// .banner-content {
+//   position: relative; /* Ensures the content is positioned within the banner */
+//   z-index: 1;        /* Keeps the content above the banner */
+//   color: white;      /* Sets the text color to white for contrast */
+//   text-align: center; /* Centers the text */
+// }
