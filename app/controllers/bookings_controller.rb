@@ -7,6 +7,8 @@ class BookingsController < ApplicationController
     @car = Car.find(params[:car_id])
     @booking = Booking.new(booking_params)
     @booking.car = @car
+    days = (@booking.end_date - @booking.start_date).to_i
+    @booking.total_price = days * @car.rate
     @booking.user = current_user
     if @booking.save
 
