@@ -8,7 +8,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.car = @car
     days = (@booking.end_date - @booking.start_date).to_i
-    @booking.total_price = days * car.rate
+    @booking.total_price = days * @car.rate
     if @booking.save
       redirect_to @booking, notice: "Booking was successfully created"
     else
