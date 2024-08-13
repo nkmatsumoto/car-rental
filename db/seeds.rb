@@ -29,7 +29,7 @@ User.all.each do |user|
   # model = Faker::Vehicle.model(make_of_model: brand_sample)
   make = Faker::Vehicle.make
   model = Faker::Vehicle.model(make_of_model: make)
-  p file = URI.open("https://loremflickr.com/320/240/#{model}")
+  p file = URI.open("https://loremflickr.com/320/240/#{make},#{model}")
 
   car = Car.create!(
   brand: make,
