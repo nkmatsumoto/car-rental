@@ -1,11 +1,35 @@
 .card-car {
   overflow: hidden;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   // height: 450px;
 }
 
-.card-car > img {
+.card-form {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  margin-right: 35px;
+}
+
+.card-one-car {
+  margin-top: 100px;
+  margin-left: 35px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-one-car>img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+
+
+.card-car>img {
   height: 300px;
   width: 100%;
   object-fit: cover;
@@ -43,7 +67,7 @@
   overflow: hidden;
   height: 180px;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
 }
