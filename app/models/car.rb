@@ -6,4 +6,8 @@ class Car < ApplicationRecord
   validates :model, presence: true
   validates :year, presence: true
   validates :rate, presence: true
+
+  def parsed_description
+    JSON.parse(description)
+  end
 end
