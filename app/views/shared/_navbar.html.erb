@@ -1,16 +1,24 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to "/", class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
-    <% end %>
+    <%= link_to "SPORTSCAR", "/", class: "navbar-brand"%>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div>
-
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav align-items-center me-auto">
+        <li class="nav-item active">
+          <%= link_to "All cars", "cars", class: "m-1 p-2 text-decoration-none link-dark align-item-center" %>
+        </li>
+        <li class="nav-item m-1 p-2 text-decoration-none link-dark align-item-center" type="link" data-insert-review-target='link' data-bs-toggle="collapse" data-bs-target="#reviewCreate" aria-expanded="false" aria-controls="reviewCreate">
+          <%= link_to "Brands", "cars", class: "m-1 p-2 text-decoration-none link-dark align-item-center" %></li>
+        <li class="nav-item">
+          <%= link_to "Locations", "cars", class: "m-1 p-2 text-decoration-none link-dark align-item-center" %>
+        </li>
+      </ul>
     </div>
+
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
@@ -38,5 +46,19 @@
         <% end %>
       </ul>
     </div>
+  </div>
+</div>
+
+<div class="collapse" id="reviewCreate">
+  <div class="card card-body">
+    <li>
+      <%= link_to 'Lamborghini', cars_path, class: "m-1 p-2 text-decoration-none link-dark align-item-center"%>
+    </li>
+    <li>
+      <%= link_to 'Bugatti', cars_path, class: "m-1 p-2 text-decoration-none link-dark align-item-center"%>
+    </li>
+    <li>
+      <%= link_to 'McLaren', cars_path, class: "m-1 p-2 text-decoration-none link-dark align-item-center"%>
+    </li>
   </div>
 </div>
