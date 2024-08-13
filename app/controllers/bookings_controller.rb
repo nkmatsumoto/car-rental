@@ -9,9 +9,12 @@ class BookingsController < ApplicationController
     @booking.car = @car
     days = (@booking.end_date - @booking.start_date).to_i
     @booking.total_price = days * @car.rate
+    @booking.user = current_user
     if @booking.save
-      redirect_to @booking, notice: "Booking was successfully created"
+
+      redirect_to bookings_path, notice: "Booking was successfully created"
     else
+
       # show the form again but with the @restaurant in this method
       render 'cars/show', status: :unprocessable_entity
     end
