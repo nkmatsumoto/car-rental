@@ -1,15 +1,17 @@
-<div class="card-car">
-  <%= cl_image_tag car.photo.key, height: 300, width: 400, crop: :fill %>
-  <div class="card-car-infos">
-    <div class="d-flex justify-content-between">
-      <h2><strong><%= car.brand %>: <%= car.model %></strong></h2>
-      <h5><strong>¥<%= car.rate %>/day</strong></h5>
-    </div>
-    <h5><%= car.user.address %></h5>
-    <div class="mt-3">
-      <% description = car.parsed_description.each do |line|%>
-        <p><%= line  %></p>
-      <% end %>
+<%= link_to car_path(car), class:"text-decoration-none link-dark" do %>
+  <div class="card-car">
+    <%= cl_image_tag car.photo.key, height: 300, width: 400, crop: :fill %>
+    <div class="card-car-infos">
+      <div class="d-flex justify-content-between">
+        <h2><strong><%= car.brand%>: <%= car.model %></strong></h2>
+        <h5><strong>¥<%= car.rate %>/day</strong></h5>
+      </div>
+      <h5><%= car.user.address %></h5>
+      <div class="mt-3">
+        <% description = car.parsed_description.each do |line|%>
+          <p><%= line  %></p>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
