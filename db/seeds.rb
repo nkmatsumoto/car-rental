@@ -1,6 +1,7 @@
 require "faker"
 
 puts "Cleaning the DB..."
+Booking.destroy_all
 Car.destroy_all
 User.destroy_all
 
@@ -23,13 +24,15 @@ user_amount.times do
     password: Faker::Internet.password(min_length: 8),
     address: Faker::Address.city
   )
+end
 
+User.all.each do |user|
   # brand_sample = brands.sample
   # model = Faker::Vehicle.model(make_of_model: brand_sample)
   make = Faker::Vehicle.make
   model = Faker::Vehicle.model(make_of_model: make)
 
-  Car.create(
+  car = Car.create(
   brand: make,
   model: model,
   year: Faker::Vehicle.year,
@@ -37,6 +40,18 @@ user_amount.times do
   imageURL: "https://loremflickr.com/320/240/#{model}",
   user: user,
   description: Faker::Vehicle.car_options )
+
+end
+
+User.all.each do |user|
+  2.times do
+  Booking.create(
+    user: user,
+    car: Car.where.not(id: user.cars).sample,
+    start_date: Date.today - rand(1..10),
+    end_date: Date.today + rand(1..10),
+  )
+  end
 end
 
 
