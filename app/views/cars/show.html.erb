@@ -1,45 +1,39 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://loremflickr.com/320/240/<%= @car.model %>')">
+<div class="banner" style="background-image: url('<%= @car.photo %>');">
+  <h1>Car Details</h1>
 </div>
-<div class="container">
-  <div class="row">
-    <div class="col-6">
-      <div class="mb-3">
-        <p><strong>Brand:</strong> <%= @car.brand %></p>
+<div class="container-wrapper">
+  <div class="card-car">
+    <%= cl_image_tag @car.photo.key, height: 300, width: 400, crop: :fill %>
+    <div class="card-car-infos">
+      <div class="d-flex justify-content-between">
+        <h2><strong><%= @car.brand %>: <%= @car.model %></strong></h2>
+        <h5><strong>¥<%= @car.rate %>/day</strong></h5>
       </div>
-      <div class="mb-3">
-        <p><strong>Model:</strong> <%= @car.model %></p>
-      </div>
-      <div class="mb-3">
-        <p><strong>Year:</strong> <%= @car.year %></p>
-      </div>
-      <div class="mb-3">
-        <p><strong>Rate:</strong> <%= @car.rate %></p>
+      <h5><%= @car.user.address %></h5>
+      <div class="mt-3">
+        <% description = @car.parsed_description.each do |line|%>
+          <p><%= line  %></p>
+        <% end %>
       </div>
     </div>
-    <div class="col-6">
-      <h2 class="text-center">Create Booking</h2>
-      <%= simple_form_for @booking, local: true do |form| %>
+  </div>
+  <div class="col-6">
+    <div class="card">
+      <h2>Create Booking</h2>
+      <%= simple_form_for [@car, @booking] do |form| %>
         <div class="mb-3">
-          <%= form.label :user_id %>
-          <%= form.collection_select :user_id, User.all, :id, :email, {}, { class: 'form-control' } %>
+          <%= form.label :start_date %>
+          <%= form.date_select :start_date, class: 'form-control' %>
         </div>
         <div class="mb-3">
-          <%= form.label :car_id %>
-          <%= form.collection_select :car_id, Car.all, :id, :model, {}, { class: 'form-control' } %>
+          <%= form.label :end_date %>
+          <%= form.date_select :end_date, class: 'form-control' %>
         </div>
-      <div class="mb-3">
-        <%= form.label :start_date %>
-        <%= form.date_select :start_date, class: 'form-control' %>
-      </div>
-      <div class="mb-3">
-        <%= form.label :end_date %>
-        <%= form.date_select :end_date, class: 'form-control' %>
-      </div>
-      <div class="mb-3">
-        <%= form.submit "Create Booking", class: 'btn btn-primary btn-lg' %>
-      </div>
-    <% end %>
+        <div class="mb-3">
+          <%= form.submit "Create Booking", class: 'btn btn-primary btn-lg' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 </div>
-<%# once you create the booking link to bookings index? %>
