@@ -15,7 +15,12 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     if @car.save
+     redirect_to car_path(@car)
+    else
+      # show the form again but with the @restaurant in this method
+      render 'new', status: :unprocessable_entity
     end
+
   end
 
   private
