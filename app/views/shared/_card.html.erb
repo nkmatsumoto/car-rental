@@ -1,6 +1,6 @@
 <%= link_to car_path(car), class:"text-decoration-none link-dark" do %>
   <div class="card-car">
-    <%= cl_image_tag car.photo.key, height: 300, width: 400, crop: :fill %>
+    <%= cl_image_tag car.photos.first.key, height: 300, width: 400, crop: :fill %>
     <div class="card-car-infos">
       <div class="d-flex justify-content-between align-items-center">
         <h2><strong><%= car.brand%></strong> <%= car.model %></h2>

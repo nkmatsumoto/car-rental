@@ -2,12 +2,13 @@
   <div class="row">
     <div class="car-grid" style="margin-top: 20px;">
       <div class="main">
-      <%= cl_image_tag @car.photo.key, height: 100, width: 400, crop: :fill, style:'', class: "image-item" %>
+      <%= cl_image_tag @car.photos.first.key, height: 700, width: 1300, crop: :fill, style:'', class: "image-item" %>
       </div>
-      <%= cl_image_tag @car.photo.key, height: 300, width: 400, crop: :fill, style:'', class: "item1 image-item" %>
-      <%= cl_image_tag @car.photo.key, height: 300, width: 400, crop: :fill, style:'', class: "item2 image-item" %>
-      <%= cl_image_tag @car.photo.key, height: 300, width: 400, crop: :fill, style:'', class: "item3 image-item" %>
-      <%= cl_image_tag @car.photo.key, height: 300, width: 400, crop: :fill, style:'', class: "item4 image-item" %>
+      <% @car.photos.each_with_index do |photo, index| %>
+        <% if index > 0 %>
+          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, style:'', class: "item#{index} image-item" %>
+        <% end %>
+      <% end %>
     </div>
   </div>
   <div class="row mt-3">
