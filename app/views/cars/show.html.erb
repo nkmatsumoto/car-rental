@@ -1,11 +1,21 @@
-<div class="container-wrapper">
+<div class="container">
   <div class="row">
-    <div class="col-8 ml-3">
-      <div class="card-car mt-5">
-        <%= cl_image_tag @car.photo.key, height: 300, width: 400, crop: :fill %>
+    <div class="car-grid" style="margin-top: 20px;">
+      <div class="main">
+      <%= cl_image_tag @car.photo.key, height: 100, width: 400, crop: :fill, style:'', class: "image-item" %>
+      </div>
+      <%= cl_image_tag @car.photo.key, height: 300, width: 400, crop: :fill, style:'', class: "item1 image-item" %>
+      <%= cl_image_tag @car.photo.key, height: 300, width: 400, crop: :fill, style:'', class: "item2 image-item" %>
+      <%= cl_image_tag @car.photo.key, height: 300, width: 400, crop: :fill, style:'', class: "item3 image-item" %>
+      <%= cl_image_tag @car.photo.key, height: 300, width: 400, crop: :fill, style:'', class: "item4 image-item" %>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-8">
+      <div class="card-car">
         <div class="card-car-infos">
           <div class="d-flex justify-content-between">
-            <h2><strong><%= @car.brand %>: <%= @car.model %></strong></h2>
+            <h2><strong><%= @car.brand%>: <%= @car.model %></strong></h2>
             <h5><strong>¥<%= @car.rate %>/day</strong></h5>
           </div>
           <h5><%= @car.user.address %></h5>
@@ -18,23 +28,20 @@
       </div>
     </div>
     <div class="col-4 pr-3">
-      <div class="card-form mt-5">
+      <div class="card-form">
         <h2>Create Booking</h2>
-        <div class="container">
-          <%= simple_form_for [@car, @booking] do |form| %>
-            <div class="mb-3">
-              <%= form.label :start_date %>
-              <%= form.date_select :start_date, class: 'form-control' %>
-            </div>
-            <div class="mb-3">
-              <%= form.label :end_date %>
-              <%= form.date_select :end_date, class: 'form-control' %>
-            </div>
-            <div class="mb-3">
-              <%= form.submit "Create Booking", class: 'btn btn-primary btn-lg' %>
-            </div>
-          <% end %>
-        </div>
+        <%= simple_form_for [@car, @booking] do |form| %>
+          <div class="mb-3">
+            <%= form.input :start_date, html5: true %>
+          </div>
+          <div class="mb-3">
+            <%= form.input :end_date, html5: true %>
+          </div>
+          <div class="mb-3">
+            <%= form.submit "Reserve", class: 'create-form-button' %>
+          </div>
+        <% end %>
+        <%= @booking.total_price %>
       </div>
     </div>
   </div>

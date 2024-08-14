@@ -20,7 +20,6 @@ class CarsController < ApplicationController
       # show the form again but with the @restaurant in this method
       render 'new', status: :unprocessable_entity
     end
-
   end
 
   private
