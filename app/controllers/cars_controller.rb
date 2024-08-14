@@ -15,10 +15,18 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     if @car.save
-     redirect_to car_path(@car)
+      redirect_to car_path(@car)
     else
       # show the form again but with the @restaurant in this method
       render 'new', status: :unprocessable_entity
+    end
+  end
+
+  def search
+    if params[:query].pesent?
+      @cars = Car.where("title ILIKE ?", params[:query])
+    else
+      @cars.Car.all
     end
   end
 
