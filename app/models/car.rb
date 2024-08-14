@@ -7,6 +7,17 @@ class Car < ApplicationRecord
   validates :year, presence: true
   validates :rate, presence: true
 
+  include PgSearch::Model
+
+  pg_search_scope :search_by,
+    against: [ :brand, :model ],
+    associated_against: {
+      user: [ :address ]
+    },
+    using: {
+      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+    }
+
   def parsed_description
     JSON.parse(description)
   end

@@ -12,3 +12,12 @@
 }
 
 /* Navbar container */
+.logo {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: solid;
+  border-color: rgb(209, 209, 209);
+  background-position: 70% 70%;
+}
