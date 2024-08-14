@@ -16,27 +16,25 @@
   border: 1.5px  solid #000000;
 }
 
-
 .card-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  margin-right: 35px;
+  border-radius: 16px;
 }
 
-.card-one-car {
-  margin-top: 100px;
-  margin-left: 35px;
-  overflow: hidden;
-  background: white;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-}
-
-.card-one-car>img {
-  height: 300px;
+.card-form h2 {
+  text-align: center;
   width: 100%;
-  object-fit: cover;
-  object-position: center;
+}
+
+.car-img {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
 }
 
 .card-car>img {
@@ -48,9 +46,13 @@
 
 .card-car h2 {
   font-size: 26px;
-  font-weight: bold;
-
+  font-weight: 350;
   margin: 0;
+}
+
+.card-car .text-grey {
+  font-size: 14px;
+  color: #535353;
 }
 
 .card-car h6 {
