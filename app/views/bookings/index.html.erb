@@ -1,14 +1,16 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="d-flex justify-content-between">
-      <h1>Bookings</h1>
-    </div>
+    <h1>Bookings</h1>
   </div>
+
 </div>
 
-
-<div class="container m-5">
-  <%= render 'shared/card_booking' %>
+<div class="container mt-5">
+    <div class="cards-booking">
+    <% @bookings.each do |booking| %>
+      <%= render 'shared/card_booking', booking: booking %>
+    <% end %>
+  </div>
 </div>
 
 
