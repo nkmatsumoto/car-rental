@@ -5,11 +5,11 @@ import mapboxgl from 'mapbox-gl'
 export default class extends Controller {
   static values = {
     apiKey: String,
-    markers: Array
+    markers: Array,
   }
 
   connect() {
-    mapboxgl.accessToken = this.apiKeyValue
+    mapboxgl.accessToken = this.apiKeyValue;
 
     this.map = new mapboxgl.Map({
       container: this.element,

@@ -5,6 +5,9 @@ class CarsController < ApplicationController
     else
       @cars = Car.all
     end
+    lat = @car.user.latitude
+    lng = @car.user.longitude
+    @markers = [{ lat: lat, lng: lng }]
   end
 
   def show

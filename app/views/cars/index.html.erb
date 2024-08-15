@@ -1,15 +1,26 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="d-flex justify-content-between">
-      <h1>Showing result</h1>
+<div class="d-flex">
+  <div>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="d-flex justify-content-between">
+          <h1>Showing result</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <div class="cards">
+        <% @cars.each do |car| %>
+          <%= render 'shared/card', car: car %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="container mt-5">
-  <div class="cards">
-    <% @cars.each do |car| %>
-      <%= render 'shared/card', car: car %>
-    <% end %>
+  <%# map starts here %>
+  <div class="ml-5 indexmap" style="width: 100%; height: calc(100vh - 70px);"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
