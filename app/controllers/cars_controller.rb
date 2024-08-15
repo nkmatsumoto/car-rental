@@ -1,12 +1,6 @@
 class CarsController < ApplicationController
   def index
     if params[:query].present?
-      # sql_query = "brand ILIKE :query OR model ILIKE :query"
-      # sql_query = <<~SQL
-      #   cars.brand @@ :query
-      #   cars.model @@ :query
-      #   cars.year @@ :query
-      # SQL
       @cars = Car.search_by(params[:query])
     else
       @cars = Car.all
