@@ -54,43 +54,86 @@
   </div>
 </div>
 <div class="collapse" id="reviewCreate">
-  <div>
-    <div class="row justify-content-between">
-      <%= link_to cars_path, class:"text-decoration-none link-dark" do %>
+    <div class="d-flex justify-content-center mt-auto">
+      <%= link_to cars_path + "?query=lamborghini", class:"text-decoration-none link-dark m-3" do %>
         <div>
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtuhjb7P7sl7uoYaoa0Rd9DSfWF_xD9OfKcA&s" class="logo">
-          <p>Lamborghini</p>
+          <h6 class="justify-content-center">Lamborghini</h6>
         </div>
       <% end %>
-      <%= link_to cars_path, class:"text-decoration-none link-dark" do %>
+      <%= link_to cars_path + "?query=bugatti", class:"text-decoration-none link-dark m-3" do %>
         <div>
           <img src="https://i.pinimg.com/736x/b3/51/fb/b351fb832347519de9172498d7439992.jpg" class="logo">
           <p>Bugatti</p>
         </div>
       <% end %>
-      <%= link_to cars_path, class:"text-decoration-none link-dark" do %>
+      <%= link_to cars_path + "?query=mclaren", class:"text-decoration-none link-dark m-3" do %>
         <div>
-          <img src="https://i.pinimg.com/736x/cc/9f/b9/cc9fb95f2dc4015f2582d3c6d309127d.jpg" class="logo">
+          <img src="https://ih1.redbubble.net/image.2473501157.0467/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" class="logo">
           <p>McLaren</p>
         </div>
       <% end %>
-      <%= link_to cars_path, class:"text-decoration-none link-dark" do %>
+      <%= link_to cars_path + "?query=ferrari", class:"text-decoration-none link-dark m-3" do %>
         <div>
           <img src="https://i.pinimg.com/564x/1f/d0/7e/1fd07e1786e734eea0a974cf90080861.jpg" class="logo">
           <p>Ferrari</p>
         </div>
       <% end %>
+      <%= link_to cars_path + "?query=rollsroyce", class:"text-decoration-none link-dark m-3" do %>
+        <div>
+          <img src="https://i.ebayimg.com/images/g/0GwAAOSwvbJj3s6L/s-l1200.jpg" class="logo">
+          <p>Rolls Royce</p>
+        </div>
+      <% end %>
     </div>
+
+    <div class="d-flex justify-content-center mb-auto">
+      <%= link_to cars_path + "?query=porsche", class:"text-decoration-none link-dark m-3" do %>
+        <div>
+          <img src="https://imagenes.elpais.com/resizer/v2/JLYOR4AIRNFTVOJMWI7G6BLZTU.jpg?auth=29657c259ddf29903d02b1211376c3143d39a9759f162384d20f124776a3ed53&width=1200" class="logo">
+          <p>Porsche</p>
+        </div>
+      <% end %>
+      <%= link_to cars_path + "?query=nissan", class:"text-decoration-none link-dark m-3" do %>
+        <div>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTutG4fdc14QZjkIDM80eXyopDyYkatioIy7w&s" class="logo">
+          <p>Nissan</p>
+        </div>
+      <% end %>
+      <%= link_to cars_path + "?query=audi", class:"text-decoration-none link-dark m-3" do %>
+        <div>
+          <img src="https://i.pinimg.com/736x/12/08/2c/12082c52a34506ee90676a7faa3a11ee.jpg" class="logo">
+          <p>Audi</p>
+        </div>
+      <% end %>
+      <%= link_to cars_path + "?query=mercedes", class:"text-decoration-none link-dark m-3" do %>
+        <div>
+          <img src="https://i.pinimg.com/736x/2b/8f/0c/2b8f0c2ffdcb7a2299ba30a61e8d9111.jpg" class="logo">
+          <p>Mercedes-Benz</p>
+        </div>
+      <% end %>
+    </div>
+
   </div>
 </div>
+
 <div class="collapse" id="reviewLocation">
-  <div class="card card-body">
-    <div class="row justify-content-center">
-      <%= link_to 'Tokyo', cars_path, class: "m-1 p-2 text-decoration-none link-dark align-item-center"%>
-      <%= link_to 'New York City', cars_path, class: "m-1 p-2 text-decoration-none link-dark align-item-center"%>
-      <%= link_to 'Monaco', cars_path, class: "m-1 p-2 text-decoration-none link-dark align-item-center"%>
+  <div>
+    <div class="d-flex justify-content-center mt-auto">
+      <%= link_to 'Tokyo', cars_path + "?query=tokyo", class: "m-1 p-2 text-decoration-none link-dark align-item-center"%>
+      <%= link_to 'Sapporo', cars_path + "?query=sapporo", class: "m-1 p-2 text-decoration-none link-dark align-item-center"%>
+      <%= link_to 'Fukuoka', cars_path + "?query=fukuoka", class: "m-1 p-2 text-decoration-none link-dark align-item-center"%>
+      <%= link_to 'Osaka', cars_path + "?query=osaka", class: "m-1 p-2 text-decoration-none link-dark align-item-center"%>
+    </div>
+
+    <div class="d-flex justify-content-center mb-auto">
+      <%= link_to 'Kyoto', cars_path + "?query=kyoto", class: "m-1 p-2 text-decoration-none link-dark align-item-center"%>
+      <%= link_to 'Sendai', cars_path + "?query=sendai", class: "m-1 p-2 text-decoration-none link-dark align-item-center"%>
+      <%= link_to 'Saitama', cars_path + "?query=saitama", class: "m-1 p-2 text-decoration-none link-dark align-item-center"%>
+      <%= link_to 'Kobe', cars_path + "?query=kobe", class: "m-1 p-2 text-decoration-none link-dark align-item-center"%>
     </div>
   </div>
 </div>
+
 <div class="collapse" id="reviewSearch">
 </div>
