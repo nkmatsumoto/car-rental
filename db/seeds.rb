@@ -8,20 +8,31 @@ User.destroy_all
 
 # CATEGORIES = %W[burger ramen sushi desserts healthy kebabs pizza tacos sandwiches dumplings soup curry rice pasta steakhouse vegan bakery juice salads seafood brunch wings cafe bbq deli pies buffet pub brasserie shakes creamery grill]
 
-user_count = 7
+user_count = 8
 
-puts "Creating #{user_count} users and cars..."
+puts "Creating #{user_count + 3} users and cars..."
 
 brands = {
-  Porsche: { model: "Laferrari", photo_url: "db/images/image_53.jpg" },
+  Porsche: "CarreraS",
   Lamborghini: "Huracan",
-  Ferrari: { model: "Laferrari", photo_url: "db/images/image_2.jpg" },
-  RollsRoyce: { model: "Cullinan", photo_url: "db/images/image_4.jpg" },
-  McLaren: { model: "P1", photo_url: "db/images/image_4.jpg" },
-  Nissan: { model: "GTR", photo_url: "db/images/image_47.jpg" },
-  Audi: { model: "R8", photo_url: "db/images/image_55.jpg" },
-  Mercedes: { model: "G-wagon", photo_url: "db/images/image_57.jpg" },
+  Ferrari: "Laferrari",
+  RollsRoyce: "Cullinan",
+  McLaren: "P1",
+  Nissan: "GTR",
+  Audi: "R8",
+  Mercedes: "G-wagon",
 }
+
+cities = [
+  "Tokyo",
+  "Sapporo",
+  "Fukuoka",
+  "Osaka",
+  "Kyoto",
+  "Sendai",
+  "Saitama",
+  "Kobe",
+]
 
 user_count.times do
   User.create(
@@ -29,19 +40,18 @@ user_count.times do
     last_name: Faker::Name.last_name,
     email: Faker::Internet.unique.email,
     password: Faker::Internet.password(min_length: 8),
-    address: Faker::Address.city
+    address: cities.sample
   )
 
-  brands.each do |brand, info|
-    Car.create(
-      user: user,
-      make: brand.to_s,
-      model: info[:model],
-      photo_url: info[:photo_url]  # Use the mapped photo_url
-    )
-  end
+  # brands.each do |brand, info|
+  #   Car.create(
+  #     user: User.all.sample,
+  #     make: brand.to_s,
+  #     model: info[:model],
+  #     photo_url: info[:photo_url]  # Use the mapped photo_url
+  #   )
+  # end
 end
-
 
 User.create!(
   first_name: "Nicholas",
@@ -84,6 +94,25 @@ User.create!(
 #   car.save
 # end
 
+User.all.each do |user|
+
+  # make = Faker::Vehicle.make
+  # model = Faker::Vehicle.model(make_of_model: brand_sample)
+  make = brands.keys.sample
+  model = brands[make]
+  p file = URI.open("https://loremflickr.com/320/240/#{make},#{model}")
+
+  car = Car.create!(
+  brand: make,
+  model: model,
+  year: Faker::Vehicle.year,
+  rate: Faker::Commerce.price(range: 50..500),
+  user: user,
+  description: Faker::Vehicle.car_options )
+  car.photos.attach(io: file, filename: "#{model}.jpg", content_type: "image/png")
+  car.save
+end
+
 
 # lambo2 = Car.create!(
 #   brand: "Lamborghini",
@@ -98,7 +127,7 @@ lambo = Car.create!(
   model: "Huracan",
   year: 2022,
   rate: Faker::Commerce.price(range: 50..500),
-  user: User.find_by(email: "nk.matsumoto@gmail.com"),
+  user: User.find_by(email: "stuntpad@gmail.com"),
   description: Faker::Vehicle.car_options )
 
 
@@ -141,25 +170,3 @@ lambo = Car.create!(
 
 
 puts "... created #{user_count} users and cars"
-
-
-
-
-# User.all.each do |user|
-#   # brand_sample = brands.sample
-#   # make = Faker::Vehicle.make
-#   # model = Faker::Vehicle.model(make_of_model: brand_sample)
-#   make = brands.sample
-#   model = Faker::Vehicle.model(make_of_model: make)
-#   p file = URI.open("https://loremflickr.com/320/240/#{make},#{model}")
-
-#   car = Car.create!(
-#   brand: make,
-#   model: model,
-#   year: Faker::Vehicle.year,
-#   rate: Faker::Commerce.price(range: 50..500),
-#   user: user,
-#   description: Faker::Vehicle.car_options )
-#   car.photo.attach(io: file, filename: "#{model}.jpg", content_type: "image/png")
-#   car.save
-# end

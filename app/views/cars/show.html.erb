@@ -31,7 +31,7 @@
     <div class="col-5">
       <div data-controller="booking-price" data-booking-price-rate-value="<%= @car.rate %>">
         <div class="cards-form">
-          <p class='fw-bold fs-3'>¥<%= @car.rate %> <small class='fw-light'>night</small></p>
+          <p class='fw-bold fs-3'>$<%= @car.rate %>0 <small class='fw-light'>night</small></p>
           <%= simple_form_for [@car, @booking] do |f| %>
             <div class="d-flex">
               <%= f.input :start_date, html5: true, input_html: { data: { booking_price_target: 'start_date', action: 'change->booking-price#update' }, min: Date.today } %>
