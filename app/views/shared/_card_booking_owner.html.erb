@@ -4,7 +4,23 @@
   <div class="card-booking-infos p-3 d-flex-column align-items-stretch">
       <div class="d-flex justify-content-between align-items-center">
         <h5><strong><%= booking.start_date.strftime("%b %e") %> to <%= booking.end_date.strftime("%b %d, %Y") %> </strong> </h5>
-        <div class="badge rounded-pill status-<%= booking.status %>"> <div> <%= booking.status.capitalize %> </div> </div>
+
+        <% if booking.pending? %>
+          <div class="booking-actions">
+            <%= simple_form_for booking do |f| %>
+              <%= f.input :status, as: :hidden, input_html: { value: 'accepted' } %>
+              <%= f.submit 'Accept', class: 'btn btn-info' %>
+            <% end %>
+            <%= simple_form_for booking do |f| %>
+              <%= f.input :status, as: :hidden, input_html: { value: 'declined' } %>
+              <%= f.submit 'Decline', class: 'btn btn-light' %>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="badge rounded-pill status-<%= booking.status %>"> <div> <%= booking.status.capitalize %> </div> </div>
+        <% end %>
+
+
       </div>
       <div>
         <h5 class="p-0"><%= booking.car.brand %> <%= booking.car.model %></h3>
