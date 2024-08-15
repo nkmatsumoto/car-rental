@@ -13,11 +13,10 @@ class CarsController < ApplicationController
   end
 
   def create
-    @car = Car.new(car_params)
+    @car = current_user.cars.build(car_params)
     if @car.save
-      redirect_to car_path(@car)
+      redirect_to owner_bookings_path, notice: "Car was successfully listed"
     else
-      # show the form again but with the @restaurant in this method
       render 'new', status: :unprocessable_entity
     end
   end
@@ -39,6 +38,6 @@ class CarsController < ApplicationController
   private
 
   def car_params
-    params.required(:car).permit(:brand, :model, :year, :rate, photos: [])
+    params.required(:car).permit(:brand, :model, :year, :rate, :description, photos: [])
   end
 end

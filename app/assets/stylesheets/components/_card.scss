@@ -4,20 +4,19 @@
   height: 100%;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
   border-radius: 16px;
-  border: 1.5px solid #b9b9b9;
   // background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0px, rgb(0, 0, 0) 100%);
 }
 
 .card-car:hover {
   overflow: hidden;
   background: white;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
   height: 100%;
   border-radius: 16px;
   border: 1.5px  solid #000000;
 }
 
-.card-form {
+.cards-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +26,16 @@
   border-radius: 16px;
 }
 
-.card-form h2 {
+.cards-form:hover {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  height: 100%;
+  border-radius: 16px;
+  border: 1.5px  solid #000000;
+}
+
+.cards-form h2 {
   text-align: center;
   width: 100%;
 }
