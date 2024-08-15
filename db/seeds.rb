@@ -13,13 +13,14 @@ user_count = 7
 puts "Creating #{user_count} users and cars..."
 
 brands = {
-  Porsche: "GT3RS",
+  Porsche: { model: "Laferrari", photo_url: "db/images/image_53.jpg" },
   Lamborghini: "Huracan",
-  Ferrari: "Laferrari",
-  Bugatti: "Chiron",
-  McLaren: "P1",
-  Koenigsegg: "CC850",
-  Pagani: "Huarya"
+  Ferrari: { model: "Laferrari", photo_url: "db/images/image_2.jpg" },
+  RollsRoyce: { model: "Cullinan", photo_url: "db/images/image_4.jpg" },
+  McLaren: { model: "P1", photo_url: "db/images/image_4.jpg" },
+  Nissan: { model: "GTR", photo_url: "db/images/image_47.jpg" },
+  Audi: { model: "R8", photo_url: "db/images/image_55.jpg" },
+  Mercedes: { model: "G-wagon", photo_url: "db/images/image_57.jpg" },
 }
 
 user_count.times do
@@ -30,44 +31,33 @@ user_count.times do
     password: Faker::Internet.password(min_length: 8),
     address: Faker::Address.city
   )
+
+  brands.each do |brand, info|
+    Car.create(
+      user: user,
+      make: brand.to_s,
+      model: info[:model],
+      photo_url: info[:photo_url]  # Use the mapped photo_url
+    )
+  end
 end
 
 
 
 
-
-# User.all.each do |user|
-#   # brand_sample = brands.sample
-#   # make = Faker::Vehicle.make
-#   # model = Faker::Vehicle.model(make_of_model: brand_sample)
-#   make = brands.sample
-#   model = Faker::Vehicle.model(make_of_model: make)
-#   p file = URI.open("https://loremflickr.com/320/240/#{make},#{model}")
+# brands.each do |brand, model|
+#   p file = URI.open("https://loremflickr.com/320/240/#{brand},#{model}")
 
 #   car = Car.create!(
-#   brand: make,
+#   brand: brand,
 #   model: model,
 #   year: Faker::Vehicle.year,
 #   rate: Faker::Commerce.price(range: 50..500),
-#   user: user,
+#   user: User.all.sample,
 #   description: Faker::Vehicle.car_options )
-#   car.photo.attach(io: file, filename: "#{model}.jpg", content_type: "image/png")
+#   car.photos.attach(io: file, filename: "#{model}.jpg", content_type: "image/png")
 #   car.save
 # end
-
-brands.each do |brand, model|
-  p file = URI.open("https://loremflickr.com/320/240/#{brand},#{model}")
-
-  car = Car.create!(
-  brand: brand,
-  model: model,
-  year: Faker::Vehicle.year,
-  rate: Faker::Commerce.price(range: 50..500),
-  user: User.all.sample,
-  description: Faker::Vehicle.car_options )
-  car.photos.attach(io: file, filename: "#{model}.jpg", content_type: "image/png")
-  car.save
-end
 
 
 lambo = Car.create!(
@@ -116,3 +106,25 @@ end
 
 
 puts "... created #{user_count} users and cars"
+
+
+
+
+# User.all.each do |user|
+#   # brand_sample = brands.sample
+#   # make = Faker::Vehicle.make
+#   # model = Faker::Vehicle.model(make_of_model: brand_sample)
+#   make = brands.sample
+#   model = Faker::Vehicle.model(make_of_model: make)
+#   p file = URI.open("https://loremflickr.com/320/240/#{make},#{model}")
+
+#   car = Car.create!(
+#   brand: make,
+#   model: model,
+#   year: Faker::Vehicle.year,
+#   rate: Faker::Commerce.price(range: 50..500),
+#   user: user,
+#   description: Faker::Vehicle.car_options )
+#   car.photo.attach(io: file, filename: "#{model}.jpg", content_type: "image/png")
+#   car.save
+# end
