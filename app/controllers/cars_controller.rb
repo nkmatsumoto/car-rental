@@ -1,6 +1,10 @@
 class CarsController < ApplicationController
   def index
-    @cars = Car.all
+    if params[:query].present?
+      @cars = Car.search_by(params[:query])
+    else
+      @cars = Car.all
+    end
   end
 
   def show
@@ -19,20 +23,6 @@ class CarsController < ApplicationController
     else
       # show the form again but with the @restaurant in this method
       render 'new', status: :unprocessable_entity
-    end
-  end
-
-  def search
-    if params[:query].pesent?
-      # sql_query = "brand ILIKE :query OR model ILIKE :query"
-      # sql_query = <<~SQL
-      #   cars.brand @@ :query
-      #   cars.model @@ :query
-      #   cars.year @@ :query
-      # SQL
-      @cars = Car.search_by(params[:query])
-    else
-      @cars.Car.all
     end
   end
 

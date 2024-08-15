@@ -3,8 +3,8 @@
 
 .carousel-item {
   position: relative;
-  min-height: calc(100vh - 65px);
-  max-height: calc(100vh - 65px);
+  min-height: calc(100vh - 70px);
+  max-height: calc(100vh - 70px);
   overflow: hidden;
 }
 
@@ -23,8 +23,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  min-height: calc(100vh - 65px);
-  max-height: calc(100vh - 65px);
+  min-height: calc(100vh - 70px);
+  max-height: calc(100vh - 70px);
   object-fit: cover;
   z-index: 0;
 }
