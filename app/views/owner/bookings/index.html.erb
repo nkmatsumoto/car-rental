@@ -1,2 +1,14 @@
-<h1>Owner::Bookings#index</h1>
-<p>Find me in app/views/owner/bookings/index.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <h1>Owners Bookings to Review</h1>
+  </div>
+
+</div>
+
+<div class="container mt-5">
+    <div class="cards-booking">
+    <% @bookings_owner.each do |booking| %>
+      <%= render 'shared/card_booking_owner', booking: booking %>
+    <% end %>
+  </div>
+</div>

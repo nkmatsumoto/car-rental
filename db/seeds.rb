@@ -43,10 +43,35 @@ user_count.times do
 end
 
 
+User.create!(
+  first_name: "Nicholas",
+  last_name: "Matsumoto",
+  email: "nk.matsumoto@gmail.com",
+  password: "password",
+  address: "Meguro"
+)
 
-
-# brands.each do |brand, model|
-#   p file = URI.open("https://loremflickr.com/320/240/#{brand},#{model}")
+User.create!(
+  first_name: "Chaewan",
+  last_name: "Shin",
+  email: "chaewanshin@gmail.com",
+  password: "password",
+  address: "Tokyo"
+)
+User.create!(
+  first_name: "Ryo",
+  last_name: "Imaoka",
+  email: "stuntpad@gmail.com",
+  password: "password",
+  address: "Tokyo"
+)
+# User.all.each do |user|
+#   # brand_sample = brands.sample
+#   # make = Faker::Vehicle.make
+#   # model = Faker::Vehicle.model(make_of_model: brand_sample)
+#   make = brands.sample
+#   model = Faker::Vehicle.model(make_of_model: make)
+#   p file = URI.open("https://loremflickr.com/320/240/#{make},#{model}")
 
 #   car = Car.create!(
 #   brand: brand,
@@ -60,12 +85,20 @@ end
 # end
 
 
+# lambo2 = Car.create!(
+#   brand: "Lamborghini",
+#   model: "Huracan",
+#   year: 2022,
+#   rate: Faker::Commerce.price(range: 50..500),
+#   user: User.all.sample,
+#   description: Faker::Vehicle.car_options )
+
 lambo = Car.create!(
   brand: "Lamborghini",
   model: "Huracan",
   year: 2022,
   rate: Faker::Commerce.price(range: 50..500),
-  user: User.all.sample,
+  user: User.find_by(email: "nk.matsumoto@gmail.com"),
   description: Faker::Vehicle.car_options )
 
 
@@ -81,22 +114,24 @@ lambo = Car.create!(
     index = 0
     p lambo_file = URI.open(link)
     lambo.photos.attach(io: lambo_file, filename: "Lamborghini#{index.to_s}.jpg", content_type: "image/png")
+    # lambo2.photos.attach(io: lambo_file, filename: "Lambo#{index.to_s}.jpg", content_type: "image/png")
     index += 1
   end
 
   lambo.save
 
-User.all.each do |user|
-  2.times do
-  Booking.create(
-    user: user,
-    car: Car.where.not(id: user.cars).sample,
-    start_date: Date.today - rand(1..10),
-    end_date: Date.today + rand(1..10),
-  )
-  end
-end
 
+
+# User.all.each do |user|
+#   2.times do
+#   Booking.create(
+#     user: user,
+#     car: Car.where.not(id: user.cars).sample,
+#     start_date: Date.today - rand(1..10),
+#     end_date: Date.today + rand(1..10),
+#   )
+#   end
+# end
 
 
 # User.create!(

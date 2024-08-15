@@ -177,6 +177,36 @@
   justify-content: space-between;
 }
 
+.status-accepted {
+  background-color: #a9fbb6;
+  color: rgb(0, 0, 0);
+  width: 90px;
+}
+
+.status-declined {
+  background-color: #f08b8b;
+  color: rgb(0, 0, 0);
+  width: 90px;
+}
+
+.status-pending {
+  background-color: #9f8df8;
+  color: rgb(0, 0, 0);
+  width: 90px;
+}
+
+// .booking-actions {
+//   display: flex;
+//   align-items: end;
+//   width: 200px;
+// }
+
+.card-booking .booking-actions {
+  display: flex;
+  align-items: end;
+  width: 200px;
+}
+
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
