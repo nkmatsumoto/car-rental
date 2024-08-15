@@ -10,9 +10,9 @@ class Car < ApplicationRecord
   include PgSearch::Model
 
   pg_search_scope :search_by,
-    against: [ :brand, :model ],
+    against: [:brand, :model, :year],
     associated_against: {
-      user: [ :address ]
+      user: [:address]
     },
     using: {
       tsearch: { prefix: true } # <-- now `superman batm` will return something!
