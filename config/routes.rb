@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   resources :bookings, only: [:index, :update]
 
   namespace :owner do
-    get 'bookings/index'
     resources :bookings, only: [:index]
   end
 

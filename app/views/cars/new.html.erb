@@ -1,2 +1,28 @@
-<h1>Cars#new</h1>
-<p>Find me in app/views/cars/new.html.erb</p>
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card p-4" style="max-width: 600px; width: 100%;">
+    <h1 class="text-center mb-4">Add a Car</h1>
+    <%= simple_form_for @car do |form| %>
+      <div class="mb-3">
+        <%= form.input :brand, input_html: { class: 'form-control' } %>
+      </div>
+      <div class="mb-3">
+        <%= form.input :model, input_html: { class: 'form-control' } %>
+      </div>
+      <div class="mb-3">
+        <%= form.input :year, input_html: { class: 'form-control' } %>
+      </div>
+      <div class="mb-3">
+        <%= form.input :rate, input_html: { class: 'form-control' } %>
+      </div>
+      <div class="mb-3">
+        <%= form.input :description, input_html: { class: 'form-control' } %>
+      </div>
+      <div class="mb-3">
+        <%= form.input :photos, input_html: { class: 'form-control' } %>
+      </div>
+      <div class="d-grid">
+        <%= form.submit "Create Listing", class: 'create-form-button' %>
+      </div>
+    <% end %>
+  </div>
+</div>
