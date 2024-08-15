@@ -1,44 +1,47 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon align-items-center">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon align-items-center py-0">
   <div class="container-fluid">
-    <%= link_to "TURBO", "/", class: "navbar-brand text-white"%>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
     <div class="collapse navbar-collapse">
+      <%= link_to "TURBO", "/", class: "navbar-brand text-white p-3"%>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <ul class="navbar-nav align-items-center me-auto">
-        <li class="nav-item active">
-          <%= link_to "All cars", "/cars", class: "m-1 p-2 text-decoration-none text-white align-item-center" %>
+        <li class="nav-item active p-3">
+          <%= link_to "All cars", "/cars", class: "text-decoration-none text-white align-item-center" %>
         </li>
-        <li class="nav-item m-1 p-2 text-decoration-none text-white align-item-center" type="link" data-insert-review-target='link' data-bs-toggle="collapse" data-bs-target="#reviewCreate" aria-expanded="false" aria-controls="reviewCreate">
-          <%= link_to "Brands", "/cars", class: "m-1 p-2 text-decoration-none text-white align-item-center" %></li>
-        <li class="nav-item m-1 p-2 text-decoration-none text-white align-item-center" type="link" data-insert-review-target='link' data-bs-toggle="collapse" data-bs-target="#reviewLocation" aria-expanded="false" aria-controls="reviewLocation">
-          <%= link_to "Locations", "/cars", class: "m-1 p-2 text-decoration-none text-white align-item-center" %>
-        </li>
-        <li class="nav-item m-1 p-2 text-decoration-none text-white align-item-center" type="icon" data-insert-review-target='link' data-bs-toggle="collapse" data-bs-target="#reviewSearch" aria-expanded="false" aria-controls="reviewSearch">
-          <%= link_to "/cars", class: "m-1 p-2 text-decoration-none text-white align-item-center" do %>
-            <i class="fa-solid fa-magnifying-glass"></i>
-          <% end %>
+        <li class="nav-item p-3 text-decoration-none text-white align-item-center" type="link" data-insert-review-target='link' data-bs-toggle="collapse" data-bs-target="#reviewCreate" aria-expanded="false" aria-controls="reviewCreate">
+          <%= link_to "Brands", "/cars", class: "text-decoration-none text-white align-item-center" %></li>
+        <li class="nav-item p-3 text-decoration-none text-white align-item-center" type="link" data-insert-review-target='link' data-bs-toggle="collapse" data-bs-target="#reviewLocation" aria-expanded="false" aria-controls="reviewLocation">
+          <%= link_to "Locations", "/cars", class: "text-decoration-none text-white align-item-center" %>
         </li>
       </ul>
     </div>
+
+    <div>
+      <div class="row">
+        <%= form_with url: cars_path, method: :get, class: "d-flex align-items-center" do %>
+          <h6 class="pt-1 m-2"><i class="fa-solid fa-magnifying-glass text-white"></i></h6>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control rounded-pill",
+            placeholder: "Type keyword"
+            %>
+          <%= submit_tag "Search", name: "", class: "m-3 btn btn-light shadow-sm align-item-center border rounded-pill" %>
+        <% end %>
+      </div>
+    </div>
+
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "List your car", new_car_path, class: "m-1 p-2 border rounded-pill shadow-sm btn btn-light align-item-center" %>
-          </li>
-          <li class="nav-item">
-            <li class="nav-item">
-              <%= link_to "See my bookings", bookings_path, class: "m-1 p-2 border rounded-pill shadow-sm btn btn-light align-item-center" %>
-            </li>
-          </li>
           <li class="nav-item dropdown">
             <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Vehicles", "#", class: "dropdown-item text-secondary" %>
-              <%= link_to "Another action", "#", class: "dropdown-item text-secondary" %>
+              <%= link_to "List your car", "/owner/bookings", class: "dropdown-item text-secondary" %>
+              <%= link_to "See my bookings", "/bookings/", class: "dropdown-item text-secondary" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item text-secondary" %>
             </div>
           </li>
@@ -49,11 +52,12 @@
         <% end %>
       </ul>
     </div>
+
   </div>
 </div>
 
 <div class="collapse" id="reviewCreate">
-  <div class="card card-body">
+  <div>
     <div class="row justify-content-between">
       <%= link_to cars_path, class:"text-decoration-none link-dark" do %>
         <div>
@@ -61,28 +65,24 @@
           <p>Lamborghini</p>
         </div>
       <% end %>
-
       <%= link_to cars_path, class:"text-decoration-none link-dark" do %>
         <div>
           <img src="https://i.pinimg.com/736x/b3/51/fb/b351fb832347519de9172498d7439992.jpg" class="logo">
           <p>Bugatti</p>
         </div>
       <% end %>
-
       <%= link_to cars_path, class:"text-decoration-none link-dark" do %>
         <div>
           <img src="https://i.pinimg.com/736x/cc/9f/b9/cc9fb95f2dc4015f2582d3c6d309127d.jpg" class="logo">
           <p>McLaren</p>
         </div>
       <% end %>
-
       <%= link_to cars_path, class:"text-decoration-none link-dark" do %>
         <div>
           <img src="https://i.pinimg.com/564x/1f/d0/7e/1fd07e1786e734eea0a974cf90080861.jpg" class="logo">
           <p>Ferrari</p>
         </div>
       <% end %>
-
     </div>
   </div>
 </div>
@@ -98,16 +98,5 @@
 </div>
 
 <div class="collapse" id="reviewSearch">
-  <div class="row justify-content-center">
-    <div class="col-sm-8 my-3">
-      <%= form_with url: cars_path, method: :get, class: "d-flex my-3" do %>
-        <%= text_field_tag :query,
-              params[:query],
-              class: "form-control",
-              placeholder: "Type keyword"
-          %>
-        <%= submit_tag "Search", name: "", class: "border shadow-sm btn btn-light align-item-center" %>
-      <% end %>
-    </div>
-  </div>
+
 </div>
