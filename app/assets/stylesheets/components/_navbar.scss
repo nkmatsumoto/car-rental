@@ -21,3 +21,15 @@
   border-color: rgb(209, 209, 209);
   background-position: 70% 70%;
 }
+
+.navbar-nav .nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Light background on hover */
+}
+
+.navbar-nav .nav-item a:hover {
+  color: #ffcc00; /* Change text color on hover */
+}
+
+.nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Light background on hover */
+}

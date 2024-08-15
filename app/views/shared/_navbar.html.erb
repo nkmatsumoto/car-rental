@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon align-items-center py-0">
   <div class="container-fluid">
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse" style="flex: 1">
       <%= link_to "TURBO", "/", class: "navbar-brand text-white p-3"%>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -16,8 +16,7 @@
         </li>
       </ul>
     </div>
-
-    <div>
+    <div style="flex: 1" >
       <div class="row">
         <%= form_with url: cars_path, method: :get, class: "d-flex align-items-center" do %>
           <h6 class="pt-1 m-2"><i class="fa-solid fa-magnifying-glass text-white"></i></h6>
@@ -30,17 +29,17 @@
         <% end %>
       </div>
     </div>
-
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+    <div class="collapse navbar-collapse justify-content-end" style="flex: 1" id="navbarSupportedContent">
+      <li class="nav-item active p-3">
+        <%= link_to "List your car", new_car_path, class: "text-decoration-none text-white align-item-center" %>
+      </li>
+      <ul class="navbar-nav">
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
             <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "List your car", "/owner/bookings", class: "dropdown-item text-secondary" %>
               <%= link_to "See my bookings", "/bookings/", class: "dropdown-item text-secondary" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item text-secondary" %>
             </div>
@@ -52,10 +51,8 @@
         <% end %>
       </ul>
     </div>
-
   </div>
 </div>
-
 <div class="collapse" id="reviewCreate">
   <div>
     <div class="row justify-content-between">
@@ -86,7 +83,6 @@
     </div>
   </div>
 </div>
-
 <div class="collapse" id="reviewLocation">
   <div class="card card-body">
     <div class="row justify-content-center">
@@ -96,7 +92,5 @@
     </div>
   </div>
 </div>
-
 <div class="collapse" id="reviewSearch">
-
 </div>
