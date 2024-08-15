@@ -30,9 +30,9 @@
       </div>
     </div>
     <div class="collapse navbar-collapse justify-content-end" style="flex: 1" id="navbarSupportedContent">
-      <span class="nav-item active p-3">
-        <%= link_to "List your car", new_car_path, class: "text-decoration-none text-white align-item-center" %>
-      </span>
+      <li class="nav-item active p-3">
+        <%= link_to "Switch to owner", owner_bookings_path, class: "text-decoration-none text-white align-item-center" %>
+      </li>
       <ul class="navbar-nav">
         <% if user_signed_in? %>
           <li class="nav-item dropdown">

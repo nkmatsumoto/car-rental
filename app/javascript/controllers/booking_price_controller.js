@@ -19,8 +19,8 @@ export default class extends Controller {
       const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
       if (diffInDays > 0) {
         // displays the total rate per nigh
-        this.infoTarget.innerText = `¥${ratePerDay} x ${diffInDays} nights`;
-        this.rateTarget.innerHTML = `<span>¥${(
+        this.infoTarget.innerText = `$${ratePerDay} x ${diffInDays} nights`;
+        this.rateTarget.innerHTML = `<span>$${(
           diffInDays * ratePerDay
         ).toLocaleString()}</span> <small class='fw-light'>total</small> `;
         console.log(ratePerDay);
