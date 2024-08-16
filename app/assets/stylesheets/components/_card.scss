@@ -53,27 +53,35 @@
 
 .image-grid-item {
   overflow: hidden;
-  border-radius: 8px;
 }
 
 .main {
   grid-area: main;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border: 0.8px  solid rgba(0, 0, 0, 0.15);
 }
 
 .item1 {
   grid-area: item1;
+  border: 1px  solid rgba(0, 0, 0, 0.15);
 }
 
 .item2 {
   grid-area: item2;
+  border-top-right-radius: 16px;
+  border: 1px  solid rgba(0, 0, 0, 0.15);
 }
 
 .item3 {
   grid-area: item3;
+  border: 1px  solid rgba(0, 0, 0, 0.15);
 }
 
 .item4 {
   grid-area: item4;
+  border-bottom-right-radius: 16px;
+  border: 1px  solid rgba(0, 0, 0, 0.15);
 }
 
 .image-item {
