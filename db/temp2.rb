@@ -1,27 +1,12 @@
-
 require "faker"
 require "open-uri"
+require "nokogiri"
 
+puts " "
 puts "Cleaning the DB..."
 Booking.destroy_all
 Car.destroy_all
 User.destroy_all
-
-
-user_count = 8
-
-puts "Creating #{user_count + 3} users and cars..."
-
-brands = {
-  Porsche: "CarreraS",
-  Lamborghini: "Huracan",
-  Ferrari: "Laferrari",
-  RollsRoyce: "Cullinan",
-  McLaren: "P1",
-  Nissan: "GTR",
-  Audi: "R8",
-  Mercedes: "G-wagon",
-}
 
 cities = [
   "Tokyo",
@@ -33,25 +18,8 @@ cities = [
   "Saitama",
   "Kobe",
 ]
-
-user_count.times do
-  User.create(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    email: Faker::Internet.unique.email,
-    password: Faker::Internet.password(min_length: 8),
-    address: cities.sample
-  )
-
-  # brands.each do |brand, info|
-  #   Car.create(
-  #     user: User.all.sample,
-  #     make: brand.to_s,
-  #     model: info[:model],
-  #     photo_url: info[:photo_url]  # Use the mapped photo_url
-  #   )
-  # end
-end
+puts " "
+puts "Creating users accounts for Chae, Ryo and Nick..."
 
 User.create!(
   first_name: "Nicholas",
@@ -75,61 +43,105 @@ User.create!(
   password: "password",
   address: "Tokyo"
 )
-# User.all.each do |user|
-#   # brand_sample = brands.sample
-#   # make = Faker::Vehicle.make
-#   # model = Faker::Vehicle.model(make_of_model: brand_sample)
-#   make = brands.sample
-#   model = Faker::Vehicle.model(make_of_model: make)
-#   p file = URI.open("https://loremflickr.com/320/240/#{make},#{model}")
 
-#   car = Car.create!(
-#   brand: brand,
-#   model: model,
-#   year: Faker::Vehicle.year,
-#   rate: Faker::Commerce.price(range: 50..500),
-#   user: User.all.sample,
-#   description: Faker::Vehicle.car_options )
-#   car.photos.attach(io: file, filename: "#{model}.jpg", content_type: "image/png")
-#   car.save
-# end
+user_count = 12
+puts " "
+puts "Creating #{user_count} random users..."
 
-User.all.each do |user|
-
-  # make = Faker::Vehicle.make
-  # model = Faker::Vehicle.model(make_of_model: brand_sample)
-  make = brands.keys.sample
-  model = brands[make]
-  p file = URI.open("https://loremflickr.com/320/240/#{make},#{model}")
-
-  car = Car.create!(
-  brand: make,
-  model: model,
-  year: Faker::Vehicle.year,
-  rate: Faker::Commerce.price(range: 50..500),
-  user: user,
-  description: Faker::Vehicle.car_options )
-  car.photos.attach(io: file, filename: "#{model}.jpg", content_type: "image/png")
-  car.save
+user_count.times do
+  User.create(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Internet.unique.email,
+    password: Faker::Internet.password(min_length: 8),
+    address: cities.sample
+  )
 end
 
 
-# lambo2 = Car.create!(
-#   brand: "Lamborghini",
-#   model: "Huracan",
-#   year: 2022,
-#   rate: Faker::Commerce.price(range: 50..500),
-#   user: User.all.sample,
-#   description: Faker::Vehicle.car_options )
+url = "https://giftlife.tokyo/awd/rental" # the url of the web page you want to scrape
+
+puts " "
+puts "scrapping data from #{url}"
+html = URI.open(url) # open the html of the page
+doc = Nokogiri::HTML.parse(html) # create a nokogiri doc based on that html
+
+# names = []
+# name_elements = doc.search(".ec-productItemRole__title")
+# name_elements.first(5).each do |element|
+#   names << element.text.strip
+# end
+
+urls = []
+urls_elements = doc.search(".ec-productItemRole__image a")
+urls_elements.first(19).each do |element|
+  urls << element.attribute("href").value
+end
+
+image_urls = []
+urls.each do |url|
+  html2 = URI.open(url) # open the html of the page
+  doc2 = Nokogiri::HTML.parse(html2) # create a nokogiri doc based on that html
+
+  name_element = doc2.search(".ec-productRole__title h1")
+  name_array = name_element.text.strip.split(" ", 2)
+
+  image_elements = doc2.search(".ec-productVisualNav img")
+  image_elements.first(5).each do |element|
+    prefix = "https://giftlife.tokyo/"
+    image_urls << "#{prefix}#{element.attribute("src").value}"
+  end
+
+  puts " "
+  puts "creating car: #{name_element.text.strip}"
+  car = Car.create!(
+    brand: name_array[0],
+    model: name_array[1],
+    year: Faker::Vehicle.year,
+    rate: Faker::Commerce.price(range: 500..1500),
+    user: User.all.sample,
+    description: Faker::Vehicle.car_options )
+
+  index = 0
+  image_urls.each do |link|
+    p file = URI.open(link)
+    car.photos.attach(io: file, filename: "#{name_element.text.strip}#{index.to_s}.jpg", content_type: "image/png")
+    index += 1
+  end
+  car.save
+  image_urls = []
+end
+
+
+# names_and_urls = names.zip(urls).flatten.compact.each_slice(2).to_a
+# names_urls_preptime = names_and_urls.zip(prep_times).flatten.compact.each_slice(3).to_a
+# names_urls_pretime_ratings = names_urls_preptime.zip(ratings).flatten.compact.each_slice(4).to_a
+# # Parse the HTML document to extract the first 5 recipes suggested and store them in an Array
+# recipe_array = []
+# names_urls_pretime_ratings.each do |parameters|
+#   recipe_array << Recipe.new(*parameters)
+# end
+
+
+# brands = {
+#   Porsche: "CarreraS",
+#   Lamborghini: "Huracan",
+#   Ferrari: "Laferrari",
+#   RollsRoyce: "Cullinan",
+#   McLaren: "P1",
+#   Nissan: "GTR",
+#   Audi: "R8",
+#   Mercedes: "G-wagon",
+# }
+
 
 lambo = Car.create!(
   brand: "Lamborghini",
   model: "Huracan",
   year: 2022,
-  rate: Faker::Commerce.price(range: 50..500),
+  rate: Faker::Commerce.price(range: 500..1500),
   user: User.find_by(email: "stuntpad@gmail.com"),
   description: Faker::Vehicle.car_options )
-
 
   lambo_img_link = [
     "https://images.pexels.com/photos/6462662/pexels-photo-6462662.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
@@ -143,30 +155,10 @@ lambo = Car.create!(
     index = 0
     p lambo_file = URI.open(link)
     lambo.photos.attach(io: lambo_file, filename: "Lamborghini#{index.to_s}.jpg", content_type: "image/png")
-    # lambo2.photos.attach(io: lambo_file, filename: "Lambo#{index.to_s}.jpg", content_type: "image/png")
     index += 1
   end
 
   lambo.save
 
-
-
-# User.all.each do |user|
-#   2.times do
-#   Booking.create(
-#     user: user,
-#     car: Car.where.not(id: user.cars).sample,
-#     start_date: Date.today - rand(1..10),
-#     end_date: Date.today + rand(1..10),
-#   )
-#   end
-# end
-
-
-# User.create!(
-#   content: Faker::Restaurant.review,
-#   rating: rand(2..5),
-#   restaurant: restaurant)
-
-
-puts "... created #{user_count} users and cars"
+puts " "
+puts "... created #{User.all.count} users and #{Car.all.count} cars"
