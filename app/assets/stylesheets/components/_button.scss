@@ -15,3 +15,22 @@
   transform: scale(1.05); /* Slightly scale up the button */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
 }
+
+.create-button {
+  background-color: black; /* Button background color */
+  color: white; /* Text color */
+  padding: 15px 30px; /* Padding for size */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transition for hover effects */
+  width: 150px;
+}
+
+.create-button:hover {
+  background-color: white; /* Background color on hover */
+  color: black; /* Text color on hover */
+  transform: scale(1.05); /* Slightly scale up the button */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
