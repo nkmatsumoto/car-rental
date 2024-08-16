@@ -18,7 +18,7 @@
         <%= form.input :description, input_html: { class: 'form-control' } %>
       </div>
       <div class="mb-3">
-        <%= form.input :photos, input_html: { class: 'form-control' } %>
+        <%= form.input :photos, as: :file, input_html: { class: 'form-control', multiple: true } %>
       </div>
       <div class="d-grid">
         <%= form.submit "Create Listing", class: 'create-form-button' %>

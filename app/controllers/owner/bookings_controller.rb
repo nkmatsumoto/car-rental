@@ -2,7 +2,20 @@ class Owner::BookingsController < ApplicationController
   def index
     @bookings_owner = current_user.bookings_as_owner
     @bookings_user = current_user.bookings.order(start_date: :desc)
+    @cars = current_user.cars
   end
+
+  def create
+    @car = Car.new(car_params)
+    @car.owner = current_owner
+
+    if @car.save
+      redirect_to owner_bookings_path, notice: 'Car was successfully added.'
+    else
+      render :new
+    end
+  end
+
 
   private
 

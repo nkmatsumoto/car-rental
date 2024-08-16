@@ -34,7 +34,8 @@ class CarsController < ApplicationController
   end
 
   def create
-    @car = current_user.cars.build(car_params)
+    @car = Car.new(car_params)
+    @car.user = current_user
     if @car.save
       redirect_to owner_bookings_path, notice: "Car was successfully listed"
     else
