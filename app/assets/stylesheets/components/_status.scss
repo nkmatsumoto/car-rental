@@ -1,0 +1,27 @@
+.badge {
+  &.rounded-pill {
+    background-color: white;
+    color: black;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    font-size: 14px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    &.status-pending {
+      border-color: #f0ad4e;
+    }
+
+    &.status-accepted {
+      border-color: #5cb85c;
+    }
+
+    &.status-declined {
+      border-color: #d9534f;
+    }
+  }
+}
