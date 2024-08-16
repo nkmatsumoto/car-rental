@@ -9,11 +9,11 @@
           <div class="booking-actions">
             <%= simple_form_for booking do |f| %>
               <%= f.input :status, as: :hidden, input_html: { value: 'accepted' } %>
-              <%= f.submit 'Accept', class: 'btn btn-info' %>
+              <%= f.submit 'Accept', class: 'btn-custom btn-accept' %>
             <% end %>
             <%= simple_form_for booking do |f| %>
               <%= f.input :status, as: :hidden, input_html: { value: 'declined' } %>
-              <%= f.submit 'Decline', class: 'btn btn-light' %>
+              <%= f.submit 'Decline', class: 'btn-custom btn-decline' %>
             <% end %>
           </div>
         <% else %>
