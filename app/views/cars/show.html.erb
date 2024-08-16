@@ -2,7 +2,7 @@
   <div class="row">
     <div class="car-grid" style="margin-top: 20px;">
       <div class="main">
-        <%= cl_image_tag @car.photos.first.key, height: 700, width: 1300, crop: :fill, style:'', class: "image-item" %>
+        <%= cl_image_tag @car.photos.first.key, height: 700, width: 1300, crop: :fill, style:'', class: "main image-item" %>
       </div>
       <% @car.photos.each_with_index do |photo, index| %>
         <% if index > 0 %>
