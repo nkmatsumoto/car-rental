@@ -11,6 +11,7 @@ class CarsController < ApplicationController
         lat: car.user.latitude,
         lng: car.user.longitude,
         info_window_html: render_to_string(partial: "info_window", locals: { car: car }),
+        # marker_html: render_to_string(partial: "marker")
       }
     end
   end
