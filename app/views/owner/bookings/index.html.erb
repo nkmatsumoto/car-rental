@@ -1,14 +1,21 @@
 <div class="container mt-5">
   <div class="row">
     <h1>Owners Bookings to Review</h1>
+    <%= link_to "List your car", new_car_path, class: "create-button m-1 p-2 border rounded-pill shadow-sm btn btn-light align-item-center" %>
   </div>
-
 </div>
-
-<div class="container mt-5">
-    <div class="cards-booking">
+<div class="container mt-5 pad-bottom">
+  <div class="cards-booking">
     <% @bookings_owner.each do |booking| %>
       <%= render 'shared/card_booking_owner', booking: booking %>
+    <% end %>
+  </div>
+</div>
+<div class="container mt-5 pb-2 pad-bottom">
+<h2>Your Cars</h2>
+  <div class="cards">
+    <% @cars.each do |car| %>
+      <%= render 'shared/card', car: car %>
     <% end %>
   </div>
 </div>

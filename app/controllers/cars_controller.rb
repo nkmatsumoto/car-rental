@@ -11,7 +11,7 @@ class CarsController < ApplicationController
         lat: car.user.latitude,
         lng: car.user.longitude,
         info_window_html: render_to_string(partial: "info_window", locals: { car: car }),
-        # marker_html: render_to_string(partial: "marker")
+        marker_html: render_to_string(partial: "marker")
       }
     end
   end
@@ -21,7 +21,12 @@ class CarsController < ApplicationController
     @booking = Booking.new
     lat = @car.user.latitude
     lng = @car.user.longitude
-    @markers = [{ lat: lat, lng: lng }]
+    @markers = [{
+      lat: lat,
+      lng: lng,
+      info_window_html: render_to_string(partial: "info_window", locals: { car: @car }),
+      marker_html: render_to_string(partial: "marker")
+      }]
   end
 
   def new
@@ -29,7 +34,8 @@ class CarsController < ApplicationController
   end
 
   def create
-    @car = current_user.cars.build(car_params)
+    @car = Car.new(car_params)
+    @car.user = current_user
     if @car.save
       redirect_to owner_bookings_path, notice: "Car was successfully listed"
     else
