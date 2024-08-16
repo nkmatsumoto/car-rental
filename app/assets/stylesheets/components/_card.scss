@@ -138,15 +138,16 @@
   overflow: hidden;
   height: 180px;
   background: white;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
   border-radius: 16px;
   display: flex;
   align-items: center;
+  width: 750px;
 }
 
 .card-booking img {
   height: 100%;
-  width: 180px;
+  width: 350px;
   border-top-left-radius: 16px;
   border-bottom-left-radius: 16px;
   border-top-right-radius: 4px;
@@ -177,23 +178,23 @@
   justify-content: space-between;
 }
 
-.status-accepted {
-  background-color: #a9fbb6;
-  color: rgb(0, 0, 0);
-  width: 90px;
-}
+// .status-accepted {
+//   background-color: #a9fbb6;
+//   color: rgb(0, 0, 0);
+//   width: 90px;
+// }
 
-.status-declined {
-  background-color: #f08b8b;
-  color: rgb(0, 0, 0);
-  width: 90px;
-}
+// .status-declined {
+//   background-color: #f08b8b;
+//   color: rgb(0, 0, 0);
+//   width: 90px;
+// }
 
-.status-pending {
-  background-color: #9f8df8;
-  color: rgb(0, 0, 0);
-  width: 90px;
-}
+// .status-pending {
+//   background-color: #9f8df8;
+//   color: rgb(0, 0, 0);
+//   width: 90px;
+// }
 
 // .booking-actions {
 //   display: flex;
