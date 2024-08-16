@@ -44,7 +44,7 @@ User.create!(
   address: "Tokyo"
 )
 
-user_count = 3
+user_count = 10
 puts " "
 puts "Creating #{user_count} random users..."
 
@@ -73,13 +73,18 @@ doc = Nokogiri::HTML.parse(html) # create a nokogiri doc based on that html
 
 urls = []
 urls_elements = doc.search(".comp-lm51gzru.FubTgk a")
-urls_elements.first(5).each do |element|
+p urls_elements.count
+urls_elements.first(19).each do |element|
   urls << element.attribute("href").value
 end
 
 image_urls = []
 urls.each do |url|
-  html2 = URI.open(url) # open the html of the page
+  begin
+    html2 = URI.open(url) # open the html of the page
+  rescue OpenURI::HTTPError
+    next
+  end
   doc2 = Nokogiri::HTML.parse(html2) # create a nokogiri doc based on that html
 
   name_element = doc2.search("h1")
@@ -92,7 +97,6 @@ urls.each do |url|
     middle.insert(-8, '~')
     suffix = "/v1/fill/w_1594,h_956,q_90/"
     ending = element.attribute("data-key").value
-
     image_urls << "#{prefix}#{middle}#{suffix}#{ending}"
   end
 
@@ -108,7 +112,12 @@ urls.each do |url|
 
   index = 0
   image_urls.each do |link|
-    p file = URI.open(link)
+    p link
+    begin
+     p file = URI.open(link) # open the html of the page
+    rescue OpenURI::HTTPError
+      next
+    end
     car.photos.attach(io: file, filename: "#{name_element.text.strip}#{index.to_s}.jpg", content_type: "image/png")
     index += 1
   end
