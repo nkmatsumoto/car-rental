@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container pad-bottom">
   <div class="row">
     <div class="car-grid" style="margin-top: 20px;">
       <div class="main">
@@ -49,7 +49,7 @@
   </div>
 
   <%# map starts here %>
-  <div class="showmap pb-5" style="width: 100%; height: 500px;"
+  <div class="showmap" style="width: 100%; height: 500px;"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
