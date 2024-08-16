@@ -44,7 +44,7 @@ User.create!(
   address: "Tokyo"
 )
 
-user_count = 12
+user_count = 3
 puts " "
 puts "Creating #{user_count} random users..."
 
@@ -58,8 +58,7 @@ user_count.times do
   )
 end
 
-
-url = "https://giftlife.tokyo/awd/rental" # the url of the web page you want to scrape
+url = "https://www.tokyosupercars.com/rentals-lineup" # the url of the web page you want to scrape
 
 puts " "
 puts "scrapping data from #{url}"
@@ -73,8 +72,8 @@ doc = Nokogiri::HTML.parse(html) # create a nokogiri doc based on that html
 # end
 
 urls = []
-urls_elements = doc.search(".ec-productItemRole__image a")
-urls_elements.first(15).each do |element|
+urls_elements = doc.search(".comp-lm51gzru.FubTgk a")
+urls_elements.first(5).each do |element|
   urls << element.attribute("href").value
 end
 
@@ -83,13 +82,18 @@ urls.each do |url|
   html2 = URI.open(url) # open the html of the page
   doc2 = Nokogiri::HTML.parse(html2) # create a nokogiri doc based on that html
 
-  name_element = doc2.search(".ec-productRole__title h1")
-  name_array = name_element.text.strip.split(" ", 2)
+  name_element = doc2.search("h1")
+  p name_array = name_element.text.strip.split(" ", 2)
 
-  image_elements = doc2.search(".ec-productVisualNav img")
+  image_elements = doc2.search(".thumbnailItem")
   image_elements.first(5).each do |element|
-    prefix = "https://giftlife.tokyo/"
-    image_urls << "#{prefix}#{element.attribute("src").value}"
+    prefix = "https://static.wixstatic.com/media/"
+    middle = element.attribute("data-key").value
+    middle.insert(-8, '~')
+    suffix = "/v1/fill/w_1594,h_956,q_90/"
+    ending = element.attribute("data-key").value
+
+    image_urls << "#{prefix}#{middle}#{suffix}#{ending}"
   end
 
   puts " "
