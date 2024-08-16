@@ -31,7 +31,11 @@
 
 .carousel-caption {
   position: absolute;
-  top: 70px;
+  top: 20px;
   bottom: auto;
   z-index: 2;
+}
+
+.carousel-item h1 {
+  font-size: 80px;
 }
