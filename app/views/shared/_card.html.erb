@@ -1,6 +1,16 @@
 <%= link_to car_path(car), class:"text-decoration-none link-dark" do %>
   <div class="card-car">
-    <%= cl_image_tag car.photos.first.key, height: 300, width: 400, crop: :fill %>
+    <% if car.photos.attached? %>
+      <%= cl_image_tag car.photos.first.key, 
+        height: 300, 
+        width: 400, 
+        crop: :fill, 
+        fetch_format: :auto,  # Enables automatic format selection (f_auto)
+        quality: :auto         # Enables automatic quality optimization (q_auto)
+      %>
+    <% else %>
+      <%= image_tag "https://images.pexels.com/photos/6462662/pexels-photo-6462662.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", height: 300, width: 400 %>
+    <% end %>
     <div class="card-car-infos">
       <div class="d-flex justify-content-between align-items-top">
         <h2><strong><%= car.brand%></strong> <%= car.model %></h2>
