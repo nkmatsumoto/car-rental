@@ -1,4 +1,5 @@
 class Owner::BookingsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @bookings_owner = current_user.bookings_as_owner
     @bookings_user = current_user.bookings.order(start_date: :desc)
