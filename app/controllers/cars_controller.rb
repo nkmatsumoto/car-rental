@@ -1,4 +1,6 @@
 class CarsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     if params[:query].present?
       @cars = Car.search_by(params[:query])
