@@ -4,7 +4,7 @@ services:
     runtime: docker
     plan: free
     region: ohio
-    branch: codex/render-neon-migration
+    branch: master
     healthCheckPath: /up
     autoDeployTrigger: "off"
     envVars:
