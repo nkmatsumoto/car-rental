@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: car-rental
+    runtime: docker
+    plan: free
+    region: ohio
+    branch: codex/render-neon-migration
+    healthCheckPath: /up
+    autoDeployTrigger: "off"
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: CLOUDINARY_URL
+        sync: false
+      - key: MAPBOX_API_KEY
+        sync: false
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: SECRET_KEY_BASE
+        sync: false
+      - key: RAILS_ENV
+        value: production
+      - key: RAILS_MAX_THREADS
+        value: "5"
+      - key: RAILS_SERVE_STATIC_FILES
+        value: "true"
+      - key: WEB_CONCURRENCY
+        value: "1"
